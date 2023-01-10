@@ -4,9 +4,9 @@
 Player::Player()
 {
     
-    position = Vector2(0, 0);
-    velocity = Vector2(0, 0);
-    acceleration = Vector2(0, 0);
+    position = Vector2{0, 0};
+    velocity = Vector2{0, 0};
+    acceleration = Vector2{0, 0};
 };
 
 Player::~Player() = default;

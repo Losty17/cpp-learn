@@ -1,32 +1,42 @@
+#include <vector>
 #include "raylib.h"
+#include "game_objects/object.h"
+#include "game_objects/player.h"
+
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 450
+
+using namespace std;
+
+const static void MainLoop(const vector<Object*>& gameObjects);
 
 int main(void)
 {
-    const int screenWidth = 800;
-    const int screenHeight = 450;
-
-    InitWindow(screenWidth, screenHeight, "Shooter");
-
-    Vector2 ballPosition = { screenWidth/2, screenHeight/2 };
-
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Shooter");
     SetTargetFPS(60);
 
-    while (!WindowShouldClose())
-    {
-        if (IsKeyDown(KEY_RIGHT)) ballPosition.x += 2.0f;
-        if (IsKeyDown(KEY_LEFT)) ballPosition.x -= 2.0f;
-        if (IsKeyDown(KEY_UP)) ballPosition.y -= 2.0f;
-        if (IsKeyDown(KEY_DOWN)) ballPosition.y += 2.0f;
+    vector<Object*> gameObjects{
+        new Player(Vector2{SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2}),
+    };
 
-        BeginDrawing();
-
-            ClearBackground(RAYWHITE);
-
-            DrawCircleV(ballPosition, 50, MAROON);
-
-        EndDrawing();
-    }
+    while (!WindowShouldClose()) MainLoop(gameObjects);
 
     CloseWindow();
     return 0;
+}
+
+const static void   MainLoop(const vector<Object*>& gameObjects)
+{
+    BeginDrawing();
+    ClearBackground(RAYWHITE);
+
+    for (Object* object : gameObjects)
+    {
+        object->keybinds();
+        object->update();
+
+        object->draw();
+    }
+
+    EndDrawing();
 }

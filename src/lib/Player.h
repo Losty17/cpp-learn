@@ -1,6 +1,18 @@
-#include <iostream>
-#include "raylib.h"
-#include "game_objects/player.h"
+#include "GameObject.h"
+#pragma once
+
+class Player : public GameObject
+{
+private:
+
+public:
+    Player();
+    Player(Vector2 position);
+    ~Player();
+    void draw();
+    void update();
+    void keybinds();
+};
 
 Player::Player(Vector2 position)
 {

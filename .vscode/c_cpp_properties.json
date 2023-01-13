@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/raylib/src/*"
+                "${workspaceFolder}/raylib/src"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

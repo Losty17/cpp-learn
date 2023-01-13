@@ -1,7 +1,10 @@
+#include <vector>
 #include "raylib.h"
 #pragma once
 
-class Object
+using namespace std;
+
+class GameObject
 {
 protected:
     Vector2 position;
@@ -9,8 +12,11 @@ protected:
     Vector2 velocity;
 
 public:
-    Object() {};
-    virtual ~Object() {};
+    bool toDelete = false;
+
+public:
+    GameObject() {};
+    virtual ~GameObject() {};
     virtual void draw() = 0;
     virtual void update() = 0;
     virtual void keybinds() = 0;
